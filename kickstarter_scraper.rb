@@ -17,7 +17,9 @@ def create_project_hash
   projects = {}
   
    # Iterate through the projects
-  kickstarter.css("li.project.grid_4").each do |project|
+   kickstarter.css("li.project.grid_4").each do |project|
+    projects[project] = {}
+   end
     title = project.css("h2.bbcard_name strong a").text
     projects[title.to_sym] = {
       :image_link => project.css("div.project-thumbnail a img").attribute("src").value,
@@ -27,6 +29,7 @@ def create_project_hash
     }
   kickstarter.css("li.project.grid_4").first
   project.css("h2.bbcard_name strong a").text
+  projects
 end
  
 create_project_hash
